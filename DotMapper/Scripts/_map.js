@@ -2,6 +2,7 @@
 
 App.points = [];
 App.MakeAMap = false;
+App.MapId = " ";
 
 require([
     "esri/map",
@@ -40,8 +41,22 @@ require([
           if (App.MakeAMap) {
               var pt = evt.mapPoint;
               var finished = (evt.type == "dblclick" || evt.type == "touchend");
+              
+              var newPoint = {};
+              newPoint.Xcoor = pt.x;
+              newPoint.Ycoor = pt.y;
 
-              App.points.push(pt);
+              newPoint.Lat = pt.getLatitude().toFixed(2);
+              newPoint.Long = pt.getLongitude().toFixed(2);
+
+              newPoint.Type = pt.type;
+
+              newPoint.spatialReference = {};
+              newPoint.spatialReference.wkid = pt.spatialReference.wkid;
+
+              App.points.push(newPoint);
+              
+              PostPoint(newPoint);
 
               addPoint(pt, finished);
           }
@@ -73,19 +88,37 @@ $("#Make").on("click", function () {
     App.Title = $("#Title").val();
     App.Description = $("#Description").val();
 
-    App.enableSave();
+    //Save Map to Database
+    App.SaveMap();
+
+    
 });
 
-App.enableSave = function () {
+App.SaveMap = function () {
+    var newMap = { Title: App.Title, Description: App.Description };
+
+    $.post('/api/Maps', newMap, function (data) {
+        App.MapId = data;
+    });
+
+    App.enableSaveBtn();
+}
+
+App.enableSaveBtn = function () {
     $('#SaveMap').removeAttr("disabled");
 }
 
 $("#SaveMap").on("click", function () {
-    //Post AJAX call
-    var Data = { Title: App.Title, Description: App.Description, Points: App.points }
-    console.log(Data);
+    
+
 });
 //Switch Button from save to make
 
+var PostPoint = function (point) {
+    point.Map_Id = App.MapId;
+
+    console.log(point);
+    $.post('/api/Points', point);
+}
 
 
