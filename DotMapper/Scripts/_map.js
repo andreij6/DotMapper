@@ -109,7 +109,7 @@ App.enableSaveBtn = function () {
 }
 
 $("#SaveMap").on("click", function () {
-    
+    console.log("you clicked me");
 
 });
 //Switch Button from save to make
