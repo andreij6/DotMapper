@@ -1,34 +1,12 @@
-﻿<div class="container content">
-    <div class="map" id="map"></div>
-
-    <ul class="nav nav-pills nav-justified">
-        <li data-toggle="modal" data-target="#myModal"><a href="#">Make A Map</a></li>
-        <li><a href="#">Load A Map</a></li>
-    </ul>
-    <button class="btn btn-lg btn-primary" id="SaveMap" disabled>Save Map</button>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Name It</h4>
-            </div>
-            <div class="modal-body">
-                <input type="text" class="form-control" placeholder="Title" id="Title"><br />
-                <textarea class="form-control" rows="3" name="description" placeholder="Description" id="Description"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="Make" data-dismiss="modal">Get Started!</button>
-            </div>
-        </div>
-    </div>
-</div>
+﻿<ng-view></ng-view>
 
 @section scripts{
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/_app.js"></script>
+    <script src="~/Scripts/controllers/HomeCtrl.js"></script>
+    <script src="~/Scripts/controllers/TodoCtrl.js"></script>
+    <script src="~/Scripts/controllers/MapperCtrl.js"></script>
     <script src="//js.arcgis.com/3.9compact"></script>
     <script src="~/Scripts/_map.js"></script>
 }

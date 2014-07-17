@@ -200,6 +200,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\chain-bridge-111326.jpg" />
+    <Content Include="Images\nature-218481.jpg" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-csp.css" />
@@ -211,6 +213,9 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\controllers\HomeCtrl.js" />
+    <Content Include="Scripts\controllers\MapperCtrl.js" />
+    <Content Include="Scripts\controllers\TodoCtrl.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-loader.min.js.map" />
@@ -686,8 +691,12 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_app.js" />
     <Content Include="Scripts\_map.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Templates\Home.html" />
+    <Content Include="Templates\Mapper.html" />
+    <Content Include="Templates\Todo.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -723,6 +732,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\factories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

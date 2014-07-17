@@ -1,8 +1,11 @@
-﻿html, body {
-  height: 100%; }
+﻿body {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background: none; }
 
-body {
-  padding-top: 70px; }
+.full {
+  background: url("/Images/nature-218481.jpg") no-repeat center center fixed;
+  background-size: cover; }
 
 .map {
   height: 100%; }
