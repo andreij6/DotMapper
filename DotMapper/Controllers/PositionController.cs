@@ -1,4 +1,6 @@
-﻿using DotMapper.DataModels;
+﻿using DotMapper.Adapters.Adapters;
+using DotMapper.Adapters.Interfaces;
+using DotMapper.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +10,20 @@ using System.Web.Http;
 
 namespace DotMapper.Controllers
 {
-    public class PointsController : ApiController
+    public class PositionController : ApiController
     {
+        IRepository db;
+
+        public PositionController()
+        {
+            db = new Repository();
+        }
+
+        public PositionController(IRepository _db)
+        {
+            db = _db;
+        }
+
         // GET: api/Points
         public IEnumerable<string> Get()
         {
@@ -23,8 +37,9 @@ namespace DotMapper.Controllers
         }
 
         // POST: api/Points
-        public void Post([FromBody]Point value)
+        public void Post([FromBody]Position value)
         {
+            db.SavePosition(value);
         }
 
         // PUT: api/Points/5

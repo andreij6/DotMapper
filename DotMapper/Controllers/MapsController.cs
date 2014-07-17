@@ -1,4 +1,6 @@
-﻿using DotMapper.DataModels;
+﻿using DotMapper.Adapters.Adapters;
+using DotMapper.Adapters.Interfaces;
+using DotMapper.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,18 @@ namespace DotMapper.Controllers
 {
     public class MapsController : ApiController
     {
+        IRepository db;
+
+        public MapsController()
+        {
+            db = new Repository();
+        }
+
+        public MapsController(IRepository _db)
+        {
+            db = _db;
+        }
+
         // GET: api/Maps
         public IEnumerable<string> Get()
         {
@@ -25,7 +39,9 @@ namespace DotMapper.Controllers
         // POST: api/Maps
         public IHttpActionResult Post([FromBody]Map value)
         {
-            return Ok(1);
+            var mapId = db.SaveMap(value);
+
+            return Ok(mapId);
         }
 
         // PUT: api/Maps/5

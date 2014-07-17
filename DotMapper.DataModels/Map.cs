@@ -11,6 +11,6 @@ namespace DotMapper.DataModels
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public virtual List<Point> Points { get; set; }
+        public virtual List<Position> Points { get; set; }
     }
 }

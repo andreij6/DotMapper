@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
 namespace DotMapper.DataModels
 {
-    public class Point
+    public class Position
     {
         public int Id { get; set; }
 
+        
         public int Map_Id { get; set; }
+
+        [ForeignKey("Map_Id")]
+        public virtual Map Map { get; set; }
 
         public string Type { get; set; }
 

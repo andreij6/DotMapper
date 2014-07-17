@@ -118,7 +118,7 @@ var PostPoint = function (point) {
     point.Map_Id = App.MapId;
 
     console.log(point);
-    $.post('/api/Points', point);
+    $.post('/api/Position', point);
 }
 
 
