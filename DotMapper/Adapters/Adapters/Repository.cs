@@ -42,5 +42,18 @@ namespace DotMapper.Adapters.Adapters
 
             return id;
         }
+
+
+        public IEnumerable<Map> GetMaps()
+        {
+            var maps = new List<Map>();
+
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                maps = db.Maps.ToList();
+            }
+
+            return maps;
+        }
     }
 }

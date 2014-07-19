@@ -13,6 +13,6 @@ namespace DotMapper.Adapters.Interfaces
 
         int SaveMap(Map value);
 
-
+        IEnumerable<Map> GetMaps();
     }
 }

@@ -25,9 +25,9 @@ namespace DotMapper.Controllers
         }
 
         // GET: api/Maps
-        public IEnumerable<string> Get()
+        public IEnumerable<Map> Get()
         {
-            return new string[] { "value1", "value2" };
+            return db.GetMaps();
         }
 
         // GET: api/Maps/5

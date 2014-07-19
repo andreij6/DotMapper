@@ -6,6 +6,7 @@ mapApp.controller('MapperCtrl', function ($scope) {
     $scope.MapId = " ";
     $scope.Attributes = [];
     $scope.Message = "Make a Map > Add a Point > Description > Save";
+    $scope.LoadedMaps = [];
 
     require([
         "esri/map",
@@ -176,6 +177,12 @@ mapApp.controller('MapperCtrl', function ($scope) {
         for(var x in array) {
             $("#attrForms").append('<label for="' + array[x].Name + '">'+ array[x].Name +'</label><input type="text" name="' + array[x].Name + '" class="form-control"/><br />');
         };
+    }
+
+    $scope.LoadMaps = function () {
+        $.get('/api/Maps', function (data) {
+            //$scope.LoadedMaps = data;
+        });
     }
 
     $('#addAttribute').on('click', addAttribute);
