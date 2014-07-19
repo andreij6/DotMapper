@@ -5,10 +5,15 @@
 }
 
 .full {
-  background: url("/Images/nature-218481.jpg") no-repeat center center fixed; 
+  background: #808080; 
   background-size: cover;
 }
 
 .map {
-    height: 100%;
+    height: 500px;
 }
+
+#attrForms {
+    margin: 5px;
+}
+

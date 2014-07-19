@@ -197,6 +197,12 @@
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
+    <Content Include="Content\Todo.css">
+      <DependentUpon>Todo.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Todo.min.css">
+      <DependentUpon>Todo.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -225,6 +231,10 @@
     <Content Include="Content\Site.scss" />
     <Content Include="Content\Site.css.map">
       <DependentUpon>Site.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Todo.scss" />
+    <Content Include="Content\Todo.css.map">
+      <DependentUpon>Todo.css</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />

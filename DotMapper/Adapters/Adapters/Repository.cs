@@ -25,7 +25,7 @@ namespace DotMapper.Adapters.Adapters
 
         public int SaveMap(Map map)
         {
-            int id = 1;
+            int id;
             using(ApplicationDbContext db = new ApplicationDbContext())
             {
                 

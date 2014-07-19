@@ -12,5 +12,7 @@ namespace DotMapper.DataModels
         public string Title { get; set; }
         public string Description { get; set; }
         public virtual List<Position> Points { get; set; }
+        public string Schema { get; set; }
+
     }
 }

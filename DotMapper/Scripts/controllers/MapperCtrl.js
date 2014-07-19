@@ -4,6 +4,8 @@ mapApp.controller('MapperCtrl', function ($scope) {
     $scope.points = [];
     $scope.MakeAMap = false;
     $scope.MapId = " ";
+    $scope.Attributes = [];
+    $scope.Message = "Make a Map > Add a Point > Description > Save";
 
     require([
         "esri/map",
@@ -57,8 +59,10 @@ mapApp.controller('MapperCtrl', function ($scope) {
 
                   $scope.points.push(newPoint);
 
-                  PostPoint(newPoint);
+                  
+                  $scope.newPoint = newPoint;
 
+                  //$("#SavePointBtn").removeAttr('disabled');
                   addPoint(pt, finished);
               }
 
@@ -79,16 +83,19 @@ mapApp.controller('MapperCtrl', function ($scope) {
                 new Color([255, 0, 0]), 1),
                 new Color([255, 0, 0, 0.75]));
           }
+
+    
       }
     );
 
-    //Dom Events /Button clicks
     $("#Make").on("click", function () {
         $scope.MakeAMap = true;
 
         $scope.Title = $("#Title").val();
         $scope.Description = $("#Description").val();
-        console.log($scope.Title);
+        
+        $("#maker").hide();
+        $("#loader").hide();
         //Save Map to Database
         $scope.SaveMap();
         
@@ -97,12 +104,29 @@ mapApp.controller('MapperCtrl', function ($scope) {
     });
 
     $scope.SaveMap = function () {
-        var newMap = { Title: $scope.Title, Description: $scope.Description };
+        var Field = {};
+       
+        $(".form-group").children().each(function (index) {
+
+            if (index % 2 === 0) {
+                Field.Name = this.value;
+            } else {
+                Field.Type = this.value;
+                $scope.Attributes.push(Field);
+                Field = {};
+            }
+
+        });
+        
+        var Attrs = $scope.attributeToString($scope.Attributes);
+
+        var newMap = { Title: $scope.Title, Description: $scope.Description, Schema: Attrs };
 
         $.post('/api/Maps', newMap, function (data) {
             $scope.MapId = data;
-            console.log(data);
         });
+
+        $scope.addForm($scope.Attributes);
 
         $scope.enableSaveBtn();
     }
@@ -111,17 +135,50 @@ mapApp.controller('MapperCtrl', function ($scope) {
         $('#SaveMap').removeAttr("disabled");
     }
 
-    $("#SaveMap").on("click", function () {
-        console.log("you clicked me");
+    $scope.attributeToString = function (array) {
+        var string = "";
 
-    });
-    //Switch Button from save to make
+        for (var x in array)
+        {
+            string += "Name : " + array[x].Name + " ";
+            string += "Type : " + array[x].Type + " | ";
+        }
+
+        return string;
+    }
+
+    $scope.SavePntBtn = function () {
+        
+        PostPoint($scope.newPoint);
+    }
 
     var PostPoint = function (point) {
         point.Map_Id = $scope.MapId;
+        var data = "";
 
-        console.log(point);
+        $('#attrForms').children().each(function (index) {
+            if (this.name !== undefined) {
+                data += this.name + " : " + this.value + ",";
+                this.value = " ";
+            }
+        })
+        point.Attributes = data;
+        
         $.post('/api/Position', point);
     }
+
+    // Allow users to add an attribute schema
+    var addAttribute = function () {
+        $("#attrFields").clone().appendTo('#attrForm');
+    }
+
+    $scope.addForm = function (array) {
+        for(var x in array) {
+            $("#attrForms").append('<label for="' + array[x].Name + '">'+ array[x].Name +'</label><input type="text" name="' + array[x].Name + '" class="form-control"/><br />');
+        };
+    }
+
+    $('#addAttribute').on('click', addAttribute);
+
 
 });

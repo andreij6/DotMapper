@@ -24,6 +24,8 @@ namespace DotMapper.DataModels
         public string Lat { get; set; }
         public string Long { get; set; }
 
+        public string Attributes { get; set; }
+
         public SpatialReference spatialReference { get; set; }
     }
 

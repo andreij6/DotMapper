@@ -1,12 +1,20 @@
-﻿<div class="container content">
-    <div class="map" id="map"></div>
+﻿<section class="col-md-12 content">
+    <article class="col-md-3">
+        <button id="maker" class="btn btn-block btn-primary" data-toggle="modal" data-target="#myModal">Make A Map</button>
+        <button id="loader" class="btn btn-block btn-primary">Load A Map</button>
+        
+        <form id="attrForms">
 
-    <ul class="nav nav-pills nav-justified">
-        <li data-toggle="modal" data-target="#myModal"><a href="">Make A Map</a></li>
-        <li><a href="">Load A Map</a></li>
-    </ul>
-    <button class="btn btn-lg btn-primary" id="SaveMap" disabled>Save Map</button>
-</div>
+        </form>
+        <button class="btn btn-block btn-success" id="SavePointBtn" ng-click="SavePntBtn()">Save this Point</button>
+        <button class="btn btn-block btn-primary" id="SaveMap" disabled>Save Map</button>
+    </article>
+    <article class="col-md-9 mapArticle">
+        <div class="map" id="map"></div>
+        <h1>{{Message}}</h1>
+    </article>
+</section>
+    
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -14,11 +22,34 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Name It</h4>
             </div>
             <div class="modal-body">
-                <input type="text" class="form-control" placeholder="Title" id="Title"><br />
-                <textarea class="form-control" rows="3" name="description" placeholder="Description" id="Description"></textarea>
+                <fieldset>
+                    <legend>Map</legend>
+                    <input type="text" class="form-control" placeholder="Title" id="Title"><br />
+                    <textarea class="form-control" rows="3" name="description" placeholder="Description" id="Description"></textarea>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Attributes</legend>
+                    <form class="form-inline" id="attrForm">
+                        <div id="attrFields">
+                            <div class="form-group">
+                                <input type="text" class="form-control col-md-9" placeholder="Attribute Name">
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option value="string" selected>String</option>
+                                    <option value="integer">Integer</option>
+                                    <option value="date">Date</option>
+                                </select>
+                            </div><br /><br />
+                        </div>
+                    </form>
+                    <button class="btn btn-primary" id="addAttribute">Add Attribute</button>
+                        
+                </fieldset>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
